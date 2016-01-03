@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/leaflet.css')
+    script(src="/javascripts/libs/jquery-1.11.3.min.js")
+    script(src="/javascripts/libs/build/react.js")
+    script(src="/javascripts/libs/build/react-dom.js")
+    script(src="/javascripts/libs/browser.min.js")
+    script(src="/javascripts/libs/bootstrap.min.js")
+    script(src="/javascripts/libs/leaflet.js")
+    script(src="/javascripts/src/" + customScript, type="text/babel")
+  body
+    block content
