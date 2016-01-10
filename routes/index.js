@@ -18,7 +18,7 @@ function readExcelFile(res){
 
 
 function index(req, res, next) {
-    res.render('index', { title: 'Mapap',  customScript: 'main.js' });
+    res.render('index', { title: 'Table',  customScript: 'main.js' });
 }
 
 function data(req, res, next) {
