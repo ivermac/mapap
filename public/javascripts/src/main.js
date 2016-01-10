@@ -17,7 +17,7 @@ var AppBox = React.createClass({
     },
     render: function() {
         return (
-            <div className="app-box row">
+            <div className="row">
                 <div className="col-md-12">
                     { <TableBox data={this.state.data}/> }
                 </div>
@@ -45,14 +45,26 @@ var resizeCellValue = function(value) {
     return value
 }
 
+var arrayFilter = function(value, index) {
+    /*
+    return a list without the following
+    1. IMAGE_URL
+    2. GALLERY_URL
+    8. PHOTO_CREDIT
+    9. PUBLISHER
+    */
+    return ($.inArray( index, [ 1, 2, 8, 9 ] ) === -1)
+}
+
 var TableBox = React.createClass({
     render: function() {
-        var data = (this.props.data === undefined) ? [] : this.props.data;
-        var rowsAndHeaders = getRowsAndHeaders(data)
-        var headers = rowsAndHeaders.headers
-        var rows = rowsAndHeaders.rows
+        var data = (this.props.data === undefined) ? [] : this.props.data,
+            rowsAndHeaders = getRowsAndHeaders(data),
+            headers = rowsAndHeaders.headers.filter(arrayFilter),
+            filterStuff = headers,
+            rows = rowsAndHeaders.rows;
         return (
-            <table className="table-box table">
+            <table className="table">
                 {<TableHeaderBox headers={headers}/>}
                 { <TableBodyBox rows={rows}/> }
             </table>
@@ -76,6 +88,7 @@ var TableHeaderBox = React.createClass({
 var TableBodyBox = React.createClass({
     render: function(){
         var bodyRow = this.props.rows.map(function(row, id){
+            row = row.filter(arrayFilter)
             return <TableRowBox key={id} row={row}/>
         })
         return (
